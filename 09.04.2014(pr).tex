@@ -1,0 +1,57 @@
+\section{Четверта практика}\marginpar{\framebox{09.04.2014}}
+\begin{tsk}
+Середні норми витрат для фабрик та максимальні об’єми виробництва
+\begin{center}
+\begin{tabular}{|c|cccc|c|}
+\hline
+Види ресурсу & \multicolumn{4}{|c|}{Норми витрат} & Об’єм\\
+\hline
+Сировина & 4 & 5 & 2 & 5  & 80 \\
+Робоча сила & 20 & 12 & 20 &40 & 400 \\
+Обладнання & 10 & 15 & 10 & 16 & 150 \\
+\hline
+\end{tabular}
+\end{center}
+Середній прибуток з кожної фабрики:
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+i & 1 & 2 & 3 & 4 \\
+\hline
+$c_i$ & 30 & 25 & 56 & 8 \\
+\hline
+\end{tabular}
+\end{center}
+Нечіткі величини, середні значення яких вказані на таблиці, мають такі розподіли.
+\begin{eqnarray}
+&\mu_\gam(\aij) = e^{\cfrac{\cb{\aij - \bar{\aij}}^2}{2}}\\
+&\gamma\cb{c_j} = \cfrac 1{1 - \cb{c_j-\bar{c_j}}^2}
+\end{eqnarray}
+Запишемо математичну модель недетермінованої задачі
+\begin{eqnarray}
+&\max\sum_{j} c_jx_j\\
+&\suml_{j} \aij\xj \leq v_i\\
+&x_j\geq 0\\
+&\mu\cb{\aij} \geq 0.8\\
+&\mu\cb{c_j} \geq 0.8\\
+\end{eqnarray}
+Розв’яжемо дві останні нерівності для оцінки можливих варіантів:
+\begin{eqnarray}
+&\cfrac12 \geq \mdl{c_j - \bar{c_j}} \\
+&-\cfrac12 + \bar {c_j} \leq c_j \leq \cfrac12 + \bar{c_j}\\
+&\mdl{\aij - \bar{\aij}} \leq \sqrt{-2\ln 0.8} \\
+&-\sqrt{2\ln\cfrac54} + \bar{\aij} \leq \aij \leq \sqrt{2\ln\cfrac54} + \bar{\aij}
+\end{eqnarray}
+Запишемо задачі песиміста та задачі оптиміста, тобто задачі, які передбачають найгірший та найкращій розвиток:\\
+Задача песиміста:
+\begin{eqnarray}
+&\max \suml_{j} \cb{\bar{c_j} -\cfrac12} x_j\\
+&\suml_j \cb{\bar{\aij} +\sqrt{2\ln\cfrac54}} x_j \leq v_i
+\end{eqnarray}
+Задача оптиміста:
+\begin{eqnarray}
+&\max \suml_{j} \cb{\bar{c_j} +\cfrac12} x_j\\
+&\suml_j \cb{\bar{\aij} -\sqrt{2\ln\cfrac54}} x_j \leq v_i
+\end{eqnarray}
+\end{tsk}
+ 

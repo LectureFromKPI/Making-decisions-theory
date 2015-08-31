@@ -1,0 +1,148 @@
+\section{Нечіткі відображення. Принципи узагальнення Зеде-Орловского} \marginpar{\framebox{19.03.2014}}
+Задана нечітка множина $A$ на $X$ з функцією приналежності $\mu_A(x)$.\\
+%просто малюнок множини А та відображення
+Нехай в нас наявне чітке відображення на $Y$, $\phi(X) = Y$.\\
+\subsection{Принцип узагальнення Зеде}
+\textbf{Образом} нечіткої множини $A$ на $X$ при чіткому відображенні $\phi(X) = Y$ називається нечітка множина $B$ на $Y$, що задається сукупністю пар
+\begin{equation}
+\cb{y,\mu_B(y)} = \cb{\phi(x),\mu_A(x)}
+\end{equation}
+Де
+\begin{equation}
+\mu_B(y)=\max\limits_{x\in\phi^{-1}(y)} \mu_A(x)
+\end{equation}
+Тепер розглянемо випадок, коли наявне нечітке відношення $\phi(x,y)$ з функцією приналежності $\mu_\phi(x,y)$.
+%ще один малюнок, а мені все ліньки
+За таким можна отримати таке представлення $\cb{\mu_\phi(x,y),\mu_A(x)}$. 
+\subsection{Принцип узагальнення Орловського}
+Він розглядає $B$ як максимінную композицію $A$ та $\phi$.\\
+\textbf{Образом} нечіткої множини $A$ на $X$ при нечіткому відображенні $\phi(x,y)$ називається нечітка множина $B$ на $Y$, що задається сукупністю пар $\cb{y,\mu_B(y)}$, де
+\begin{equation}\label{tr:6:1}
+\mu_B(y) = \max\limits_x \min\set{\mu_A(x),\mu_\phi(x,y)}
+\end{equation}
+Розглянемо випадок, коли $\phi$ - чітке відображення, тоді
+\begin{equation}\label{tr:6:2}
+\mu_\phi(x,y) = \system{1,\phi(x)=y\\0,\phi(x)\neq0}
+\end{equation}
+Підставимо \eqref{tr:6:1} у \eqref{tr:6:2} отримуємо 
+\begin{equation}
+\mu_B(y)=\max\limits_{x\in\phi^{-1}(y)} \mu_A(x)
+\end{equation}
+А це саме принцип узагальнення Зеде, тобто все вірно.\\
+\subsection{Образ нечіткого відношення}
+Наявна множина $Y$. На них задано нечітке відношення $R\subset Y\times Y$. Тоді, $Y$ відображається у $\nu_1$ і у $\nu_2$. Спробуємо знайти відношення між ними, назвемо його $\eta$. Функції відображення $\delta_1,\delta_2$.\\
+\begin{equation}\label{tr:6:3}
+\eta\cb{\nu_1,\nu_2} = \max\limits_{y,z\in Y} \min\set{\nu_1(y),\nu_2(z),\mu_R(y,z)}
+\end{equation}
+\textbf{Образом} нечіткого відношення $R$ при нечітких відображеннях $\nu_1,\nu_2$ називається узагальнене відношення переваги, що визначається за формулою \eqref{tr:6:3}.\\
+Тоді зворотнім до нього буде відношення:
+\begin{equation}
+\eta\cb{\nu_2,\nu_1} = \max\limits_{y,z\in Y} \min\set{\nu_1(z),\nu_2(y),\mu_R(z,y)}
+\end{equation}
+Нехай відношення $R$ є чітке відношення нестрого порядку "$\geq$". В такому випадку:
+\begin{equation}\label{tr:6:4}
+\mu_R(y,z) = \system{1,y\geq z\\0,y<z}
+\end{equation}
+Підставивши \eqref{tr:6:4} у \eqref{tr:6:3} отримуємо:
+\begin{equation}
+\eta\cb{\nu_1,\nu_2} = \max\limits_{y\geq z;~y,z\in Y}\min\set{\nu_1(y),\nu_2(z)}
+\end{equation}
+А зворотнім до нього відношенням буде:
+\begin{equation}
+\eta\cb{\nu_2,\nu_1} = \max\limits_{y\leq z;~y,z\in Y}\min\set{\nu_1(y),\nu_2(z)}
+\end{equation}
+Нехай $R$ - нечітке відношення нестрогої переваги. Тоді $\eta\cb{\nu_1,\nu_2}$ - буде узагальненим відношенням нестрогої переваги. Позначення $\succeq$.
+\subsection{Властивості узагальненого нечіткого відношення нестрогої переваги}
+\begin{itemize}
+\item Нехай $\delta_1,\delta_2$ - нормальні. І нехай нечітке відношення $R$ - рефлексивне. Тоді і узагальнене нечітке відношення $\eta\cb{\nu_1,\nu_2}$ також рефлексивне;
+\item Нехай нечітке відношення $R$ є сильно лінійним, тоді і узагальнене нечітке відношення $\eta\cb{\nu_1,\nu_2}$ сильно лінійне на множині усіх нормальних підмножин $\nu_1,\nu_2$;
+\item Нехай нечітке відношення $R$ є \la-лінійним, тоді і узагальнене нечітке відношення $\eta\cb{\nu_1,\nu_2}$ \la-лінійне на множині усіх нечітких підмножин $\nu_1,\nu_2$ таких, що $\max\limits_y\mu_{\nu_1}(y)>\la,\max\limits_z\mu_{\nu_2}(z)>\la$.
+\end{itemize}
+\begin{exs}
+$X=\set{x_1,x_2,x_3};Y=\set{y_1,y_2,y_3,y_4,y_5}$\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline	
+X & $x_1$ & $x_2$ & $x_3$\\
+\hline
+$\mu_A(x)$ & 0.3 & 0.7 & 1 \\
+\hline
+\end{tabular}
+\end{center}
+Окрім того, задане нечітке відношення $R\subset X\times X$ таблицею:\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+R & $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+\hline
+$x_1$ & 0.8 & 1 & 9 & 0.3 & 0.7 \\
+\hline
+$x_2$ & 0.8 & 0.3 & 0.8 & 0.4 & 0.7\\
+\hline
+$x_3$ & 0.2 & 0.3 & 0.5 & 0.2 & 1\\
+\hline
+\end{tabular}
+\end{center}
+Знайдемо множину $B$.
+\begin{equation*}
+\mu_B(y) = \max\limits_x \min\set{\mu_A(x),\mu_R(x,y)}
+\end{equation*}
+\begin{equation*}
+\mu_B(y_1) = \max\set{\min\set{0.3,0.8},\min\set{0.7,0.8},\min\set{1,0.2}} = 0.7
+\end{equation*}
+В результаті отримаємо:\\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Y & $y_1$ & $y_2$ & $y_3$ & $y_4$ & $y_5$\\
+\hline
+$\mu_B(y)$ & 0.7 & 0.3 & 0.7 & 0.4 & 1 \\
+\hline 
+\end{tabular}
+\end{center}
+\end{exs}
+\begin{exs}
+Задано дві нечіткі множини $\nu_1,\nu_2$ на $Y=\\cb{0,\infty}$. Функції приналежності:
+\begin{eqnarray*}
+\nu_1(y) &=& e^{-k_1y},k_1>0\\
+\nu_2(y) &=& e^{-k_2\mdl{z-5}},k_2>k_1
+\end{eqnarray*} 
+Нехай $R$ нечітке відношення нестрого порядку $\geq$.\\
+%графіки цих функції
+Знайти $\eta(\nu_1,\nu_2)$.\\
+\begin{equation*}
+\eta(\nu_1,\nu_2) = \max\limits_{z,y\in Y} \min\set{\nu_1(y),\nu_2(z),\mu_R(z,y)} = \max\limits_{z\geq y} \min\set{\nu_1(y),\nu_2(z)}
+\end{equation*}
+Спочатку знайдемо точки перетину функцій:\\
+\begin{description}
+\item[z<5:] $z=\cfrac{-k_1y +5k_2}{k_2};z_1=y= \cfrac{5k_2}{k_1+k_2}$\\
+\begin{itemize}
+\item $y\leq z_1$:
+\begin{equation*}
+\max\limits_{z\geq y} \min\set{\nu_1(y),\nu_2(z)} = \nu_1(y=z_1)  = e^{\frac{-5k_1k_2}{k_1+k_2}}
+\end{equation*}
+\item $z_1<y<z_2$:
+\begin{equation*}
+\eta\cb{\nu_1,\nu_2}=e^{-k_1y}
+\end{equation*}
+\item $y>z_2$:
+\begin{equation*}
+\eta\cb{\nu_1,\nu_2}=e^{k_2(y-5)}
+\end{equation*}
+\end{itemize}
+\end{description}
+\end{exs}
+$X$ - множина альтернатив, що оцінюються функцією $\phi(x,y)$ нечітка множина $Y$ оцінок.\\
+На $Y$ задане нечітке відношення переваги $R\subset Y\times Y$.\\
+%малюнок
+Очевидно, що між цими штуками буде відношення $\eta$ і ми можемо його знайти.
+\begin{equation}
+\eta\cb{x_1,x_2} = \max\limits_{y,z}\min\set{\phi(x_1,y),\phi(x_2,z),\mu_R\cb{y,z}}
+\end{equation}
+$R$ чітке відношення нестрого порядку, тоді:
+\begin{equation}
+\eta\cb{x_1,x_2} = \max\limits_{y\geq z}\min\set{\phi(x_1,y),\phi(x_1,z)}
+\end{equation}
+\begin{multline}
+\eta^{nd}(x) = 1 - \max\limits_{x'} \cb{\eta\cb{x',x} - \eta\cb{x,x'}} ={} \\ {} = 1 - \max\limits_{x'}\set{\max\limits_{y\geq z} \min\set{\phi(x',y),\phi(x,z)} - \max\limits_{y\geq z} \min\set{\phi(x,y),\phi(x',z)}}
+\end{multline}

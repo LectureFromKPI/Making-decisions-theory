@@ -1,0 +1,115 @@
+\section{Прийняття рішень в нечітких умовах}\marginpar{\framebox{05.03.2014}}
+\subsection{Нечіткі множини та операції над ними}
+\textbf{Нечіткою множиною} А на X називають множина, що задається парами $(x,\mu_A(x))$, де $x\in A$, а $\mu_A(x)$ - функція приналежності нечіткої множини $A$, яка визначається наступним чином: $\mu_A:A\to\bb{0,1}$.\\
+%Деякий приклад нечіткої множини з графіком функції приналежності
+\textbf{Носієм нечіткої множини} $A$ на універсальній множині $X$ називається множина $\supp A=\set{x:\mu_A(x)>0}$.\\
+\textbf{Доповненням} до нечіткої множини $A$ називається множина $\bar A$ така, що 
+\begin{equation}
+\mu_{\bar A}(x) = 1 - \mu_A(x),\forall x\in X
+\end{equation}
+Універсальною множиною називається множина $A$ така, що:
+\begin{equation}
+\mu_A(x) =1,\forall x\in X
+\end{equation}
+%Графіки функцій приналежності універсальної та порожньої множини
+Нечітка множина $A$ називається \textbf{нормальною}, якщо $\max\limits_{x\in X}\set{\mu_A(x)}=1$. В іншому випадку вона називається \textbf{субнормальною}.\\
+\textbf{Підмножиною рівня $\al$} нечіткої множини $A$ називається нечітка множина $A_\al$ з функцією приналежності
+\begin{equation}
+\mu_{A_\al}=\system{\mu_A(x),\mu_A(x)\geq \al\\0,\mu_A(x)<\al}
+\end{equation}
+\subsection{Операції над нечіткими множинами}
+Задані $A,\mu_A,B,\mu_B$.\\
+\textbf{Об'єднанням множин} $A$ та $B$ називається множина $C=A\cup B$ така, що 
+\begin{equation}
+\mu_C(x) = \max\set{\mu_A(x),\mu_B(x)}
+\end{equation}
+\textbf{Перетином множин} $A$ та $B$ називається множина $C=A\cap B$ така, що 
+\begin{equation}
+\mu_C(x) = \min\set{\mu_A(x),\mu_B(x)}
+\end{equation}
+\textbf{Об'єднанням множин в сильному сенсі} $A$ та $B$ називається множина $C=A\hat\cup B$ така, що 
+\begin{equation}
+\mu_C(x) = \min\set{\mu_A(x)+\mu_B(x),1}
+\end{equation}
+\textbf{Перетином множин в сильному сенсі} $A$ та $B$ називається множина $C=A\hat\cap B$ така, що 
+\begin{equation}
+\mu_C(x) = \mu_A(x)\cdot \mu_B(x)
+\end{equation}
+\textbf{Різницею множин} $A$ та $B$ називається множина $C=A\setminus B$ така, що 
+\begin{equation}
+\mu_C(x) = \max\set{\mu_A(x)-\mu_B(x),0}
+\end{equation}
+\subsection{Властивості множин рівня $\al$}
+Виконуються наступні співвідношення
+\begin{eqnarray}
+\cb{A\cup B}_\al &=& A_\al\cup B_\al\\
+\cb{A\cap B}_\al &=& A_\al\cap B_\al\\
+\cb{A\hat\cup B}_\al &\supseteq & A_\al \cup B_\al\\
+\cb{A\hat\cap B}_\al &\subseteq& A_\al\cap B_\al
+\end{eqnarray}
+\subsection{Декомпозиція множини}
+Нехай задана нечітка множина $A$ з функцією приналежності $\mu_A(x)$. Тоді його можна розкласти за рівнями $\al$.
+\begin{equation}
+A = \bcupl_{\al=0}^1 A_\al
+\end{equation}
+Операція концентрування нечіткої множини:
+\begin{eqnarray}
+\con A = A^k,k>1,k\in\mN\\
+\mu_{A^k} (x)= \mu_A^k (x)
+\end{eqnarray}
+Операція розтягування нечіткої множини:
+\begin{eqnarray}
+\dil A = A^{\frac1k},k>1,k\in\mN\\
+\mu_{A^{\frac1k}} (x)= \mu_A^{\frac1k} (x)
+\end{eqnarray}
+\section{Нечіткі відношення}
+\textbf{Нечіткою відношенням} $R$ на $X$ називається нечітка підмножина декартового добутку $X\times X$, що задається сукупністю пар $\cb{(x,y),\mu_R(x,y)}$\\
+\subsection{Операції над нечіткими відношеннями}
+Нехай задані нечіткі відношення $A,\mu_A(x,y),B,\mu_B(x,y);A,B\subset X\times X$\\
+\begin{eqnarray}
+C=A\cup B&\Rightarrow& \mu_C(x,y) = \max\set{\mu_A(x,y),\mu_B(x,y)}\\
+C=A\hat\cup B&\Rightarrow& \mu_C(x,y) = \min\set{\mu_A(x,y)+\mu_B(x,y),1}\\
+C=A\cap B&\Rightarrow& \mu_C(x,y) = \min\set{\mu_A(x,y),\mu_B(x,y)}\\
+C=A\hat\cap B&\Rightarrow& \mu_C(x,y) = \mu_A(x,y)\cdot\mu_B(x,y)
+\end{eqnarray}
+\subsection{Композиції нечітких відношень}
+На відмінність від звичайних відношень, в нечітких існує три варіанти композицій. Нехай задано $A\subset X\times Y,\mu_A(x,y)$ та $B\subset Y\times Z,\mu_B(y,z)$.\\
+\textbf{Максимінною композицією} $A$ та $B$ називається таке відношення $C=A\ast B$, що 
+\begin{equation}
+\mu_C(x,z) = \max\limits_{y\in Y}\min\set{\mu_A(x,y),\mu_B(y,z)}
+\end{equation}
+\textbf{Мінімаксною композицією} $A$ та $B$ називається таке відношення $C=A\circ B$, що 
+\begin{equation}
+\mu_C(x,z) = \min\limits_{y\in Y}\max\set{\mu_A(x,y),\mu_B(y,z)}
+\end{equation}
+\textbf{Максімультиплікативною композицією} $A$ та $B$ називається така $C=A\cdot B$, що 
+\begin{equation}
+\mu_C(x,z) = \max\limits_{y\in Y} \mu_A(x,y)\cdot \mu_B(y,z)
+\end{equation}
+Якщо $X$ скінченне, то функцію приналежності до відношення можна задавати у вигляді матриці.
+%Приклад
+Нечітке відношення $R$ називається \textbf{рефлексивним}, якщо 
+\begin{equation}
+\mu_R(x,x)=1,\forall x\in X
+\end{equation}
+Нечітке відношення $R$ називається \textbf{антірефлексивним}, якщо 
+\begin{equation}
+\mu_R(x,x)=0,\forall x\in X
+\end{equation}
+Нечітке відношення $R$ називається \textbf{симетричним}, якщо 
+\begin{equation}
+\mu_R(x,y)=\mu_R(y,x),\forall x,y\in X
+\end{equation}
+Нечітке відношення $R$ називається \textbf{антісиметричним}, якщо 
+\begin{equation}
+\mu_R(x,y)>0\Rightarrow \mu_R(y,x)=0,\forall x,y\in X
+\end{equation}
+\begin{exs}
+Розглянемо відношення $R$
+\begin{equation}
+\mu_R(x,y) = \system{\mdl{x-y},\mdl{x-y}<1\\0}
+\end{equation}
+Це відношення майже рівні.
+Воно є симетричним, рефлексивним.
+\end{exs}
+

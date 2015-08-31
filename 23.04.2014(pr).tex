@@ -1,0 +1,63 @@
+\section{Шоста практика}\marginpar{\framebox{23.04.2014}}
+\begin{tsk}
+\begin{eqnarray}
+&\max 3x_1+2x_2\\
+&\max x_1-x_2\\
+&x_1 - 6x_2 \leq 3\\
+&x_1+x_2 \geq 10\\
+&-2x_1+x_2\leq 1\\
+&x_2\leq 11\\
+&2x_1+x_2\leq 32\\
+&x_1,x_2\geq 0\\
+&\rho_1=\rho_2=\frac12
+\end{eqnarray}
+%графік
+$A(3,7);B(5,11);C(10.5,11);D(15,2);E(9,1)$\\
+Знайдемо максимум та мінімум:\\
+\begin{eqnarray}
+&f_1^0(C) = 53.5\\
+&f_2^0(D) = 13\\
+&f_1^{min}(A) = 32\\
+&f_2^{min}(B) = -6\\
+\end{eqnarray}
+\begin{equation}
+w_1(x) = \cfrac{53.5-3x_1-2x_2}{30.5}
+\end{equation}
+\begin{equation}
+w_2(x) = \cfrac{13-x_1+x_2}{19}
+\end{equation}
+\begin{eqnarray}
+&\min x_3\\
+&\rho_1w_1 \leq x_3\\
+&\rho_2w_2 \leq x_3\\
+&Ax \leq B
+\end{eqnarray}
+Далі просто рахуємо.
+\end{tsk} 
+\begin{tsk}
+\begin{eqnarray}
+&\max 3x_1+2x_2\\
+&\max x_1-x_2\\
+&\bar{c}_{11}=3\\
+&\bar{c}_{12}=2\\
+&\bar{c}_{21}=1\\
+&\bar{c}_{22}=-1\\
+&\al = 0.8\\
+&f_1(x) = c_{11}x_1+c_{12}x_2\\
+&f_2(x) = c_{21}x_1+c_{22}x_2
+\end{eqnarray}
+\begin{equation}
+\mu(\cij) = \cfrac{1}{1+\cb{\cij -\bar{c}_{ij}}^2}
+\end{equation}
+Знаходимо обмеження для критеріїв:
+\begin{equation}
+\cij\in\bb{-\cfrac12 + \bar{c}_{ij},\cfrac12 +\bar{c}_{ij}}
+\end{equation}
+Отримуємо критерії:
+\begin{eqnarray}
+f_1^e (x) &=& 2.5 x_1 +1.5x_2 \\
+f_1^u (x) &=& 3.5 x_1 + 2.5x_2\\
+f_2^e (x) &=& 1.5x_1 -1.5 x_2 \\
+f_2^u (x) &=& 2.5 x_1 - 0.5x_2
+\end{eqnarray}
+\end{tsk}

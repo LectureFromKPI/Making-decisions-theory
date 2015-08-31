@@ -1,0 +1,186 @@
+\section{Прямі методи стохастичного програмування. Метод проектування СКГ}\marginpar{\framebox{26.02.2014}}
+Розглянемо тепер задачі ОСП. В яких ми можемо вимірювати функцію $\vf(\vx)$ в різних точках. При чому $\mEt{\vf(\vx,\omg)} = \vf(\vx)$. І нам потрібно це мінімізувати. При цьому, $\vf(\vx)$ не відома, а ми вимірюємо лише $\vf(\vx,\vomg_s)$, бо $\vf(\vx)$ неможливо виміряти точно.\\
+Одним з кращих методів для розв’язку такої задачі є метод стохастичних квазіградієнтов (СКГ). Він був запропонований в 1970 році академіком Ермальев Ю.М.\\
+Він використовується тоді, коли $\vf(\vx)$ випукла, але не гладка функція. Точки мінімума $\vf(\vx)$ ми позначимо $X^\ast$.\\
+Пропонується такий метод пошуку: 
+\begin{equation}
+\vx_{s+1} = \vx_s - \rho_s\gam_s\vxi_s,s=0,1,\ldots
+\end{equation}
+Де $\rho_s>0$ - це крок пошуку. $\gam_s$ - множник, що нормує. В часному випадку $\gam_s = \cfrac1{\nr{\vfx(\vx_s)}}$. А $\vxi_s$ - це випадковий вектор такий, що 
+\begin{equation}
+\mEt{\vxi_s\setminus \vx_s} = a_s \cdot \hvfx\cb{\vx_s}+\vec{B}_s
+\end{equation}
+Де $a_s(\omg)>0; \hvfx\cb{\vx_s}$ - квазіградіент функції $\vf(\vx)$ в точці $\vx_s$. $\vec{B}_s$ - деякий випадковий вектор, що незалежить від  $\vx_s$.\\
+Якщо покласти $a_s = 1,\vec{B}_s =0$, то отримуємо, що 
+\begin{equation}
+\mEt{\vxi_s\setminus \vx_s} = \hvfx\cb{\vx_s}
+\end{equation}
+Вектор $\hvfx(\vx_s)$ називається {\bf квазіградієнтом} або {\bf узагальненим градієнтом} функції в точці $\vx_s$, якщо
+\begin{equation}
+\vf(\vx) - \vf(\vx_s) \geq \mt{\hvfx}(\vx_s) (\vx-\vx_s),\forall \vx
+\end{equation}
+Якщо функція $\vf(\vx)$ гладка, то вектор квазіградієнту співпадає з градієнтом.
+\begin{exs}
+$\vf(\vx)$ - гладка та випукла. \\
+%малюнок 1
+$\vfx(\vx_s) = \hvfx(\vx_s)$
+\end{exs}
+\begin{exs}
+$\vf(\vx)$ - функція не гладка.
+%малюнок 2
+Ми не можемо провести дотичну площину, а лише деяку \textit{опорну}\\
+В даному випадку можна провести навіть множину таких опорних площин, при чому вектор антинормалі буде потрапляти в область зменшення даної функції. Отже, отримали множину квазіградієнтів.
+\end{exs}
+На цей випадок Наум Шор запропонував метод квазіградієнтів. Ми шукаємо $\min \vf(\vx)$. Пошук мінімуму відбувається у відповідності до цих рекурентних співвідношень:
+\begin{equation}
+\vx_{s+1} = \vx_s - \gam_s\rho_s \hvfx(\vx_s)
+\end{equation}
+$\rho_s>0$ - крок, а $\gam_s = \cfrac1{\nr{\hvfx(\vx_s)}}$ - множник, що нормує.\\
+Також, Наум Шор довів теорему о збіжності цього методу.\\
+\begin{teor}
+Нехай $\vf(\vx)$ - неперервна, не гладка випукла або квазівипукла фукнція.\\
+Для простоти покладемо  $\gam_s=1$\\
+Нехай виконуються наступні умови:
+\begin{enumerate}
+\item $\rho_s\xrightarrow[s\to\infty]{}0$
+\item $\sumszi \rho_s = \infty$
+\end{enumerate}
+Тоді послідовність $\set{\vx+s}\xrightarrow[s\to\infty]{} \vx^\ast,\vx^\ast\in X^\ast$
+\end{teor}
+Розглянемо таку ж задачу але з обмеженнями:
+\begin{eqnarray}
+&\min\set{\vf(\vx)}\\
+&\vx\in R
+\end{eqnarray}
+В цьому випадку використовується метод проектування квазіградієнтів:
+\begin{equation}\label{tr:3:1}
+\vx_{s+1} = \vec {\pi}_x\cb{\vx_s - \rho_s\gam_s \hvfx(\vx_s)}
+\end{equation}
+Де $\vec{\pi}_x$ - оператор проектування вектора на допустимо область $R$.
+\subsection{Властивості оператора $\pi_x$}
+\begin{enumerate}
+\item $\forall \vz: \vec{\pi}_x(\vz)\in R$
+\item $\vy\in R \Rightarrow \nr{\vy-\vec{\pi}_x(\vz)}\leq\nr{\vy-\vz},\forall \vz$
+%тут був приклад, який доводить цей очевидний факт, якщо буде настрій, я намалюю такий малюночок 
+\end{enumerate}
+\begin{teor}
+Нехай виконуються такі самі умови:
+\begin{enumerate}
+\item $\rho_s\xrightarrow[s\to\infty]{}0$
+\item $\sumszi \rho_s = \infty$
+\end{enumerate}
+Тоді послідовність $\set{\vx_s}$, що визначається відповідно формули \eqref{tr:3:1} збіжна до точки мінімуму.
+\end{teor}
+\subsection{Метод проектування СКГ}
+\begin{equation}\label{tr:3:2}
+\vx_{s+1} = \vec{\pi}_x\cb{\vx_s - \rho_s\gamma_s\vxi_s},s=0,1,\ldots
+\end{equation}
+Покладемо $\gam_s=1$ для зручності. $X^\ast$ - множина точок мінімуму функції $\vf(\vx)$.
+\begin{teor}[Теорема Ермольева]
+Нехай виконуються наступні умови:
+\begin{enumerate}
+\item $nr{\vxi_s}^2 < \const,\forall s$
+\item $a_s \geq c_s,\forall s$
+\item $\nr{\vec{B}_s} \leq b_s $
+\item $\rho_s \xrightarrow[s\to\infty]{}0$
+\item $\sumszi \rho_s^2 < \infty$
+\item $\sumszi \rho_s c_s = \infty$
+\item $\sumszi \rho_s b_s < \infty$
+\end{enumerate}
+Початкова точка оберається так, що $\nr{\vx_0}^2 < \infty$. Тоді випадкова послідовність, що визначається за формулою \eqref{tr:3:2} збіжна до точки мінімуму з ймовірністю 1. Тобто:
+\begin{equation*}
+\min\set{\liml_{s\to\infty} \xrightarrow{p=1} \vx^\ast},\vx^\ast\in X^\ast
+\end{equation*}
+\end{teor}
+\begin{proof}
+За властивостями оператора проектування $\nr{\vx^\ast-\vx_{s+1}}^2 \leq \nr{\vx^\ast - \vx_s\rho_s\vxi_s}$.\\
+Піднесемо це до квадрату: $\nr{\vx^\ast-\vx_s}^2 +2\rho_s \vxi_s^T \cb{\vx^\ast-\vx_s} +\rho^2_s \nr{\vxi_s}^2$ \\
+\begin{multline}\label{tr:3:6}
+\mEt{\nr{\vx^\ast-\vx_{s+1}}^2\setminus\set{\vx_0,\vx_1,\ldots,\vx_s}} = {} \\ {} =\nr{\vx^\ast-\vx_s} ^2 + 2\rho_sa_s \mt{\hvfx}(\vx_0)(\vx^\ast-\vx) +2\rho_s \vec{B}_s^T \cb{\vx^\ast-\vx_s}+\rho^2 c
+\end{multline}
+Так як $\hvfx(\vx_s)$ квазіградієнт, то виконується
+\begin{equation}
+\vf(\vx) - \vf(\vx_s) \geq \mt{\hvfx} (\vx_s) \cb{\vx-\vx_s}
+\end{equation}
+Підставимо $\vx^\ast$: \\
+\begin{equation}\label{tr:3:3}
+0 > \vf(\vx^\ast) - \vf(\vx_s) \geq \mt{\hvfx} (\vx_s) \cb{\vx^\ast-\vx_s}
+\end{equation}
+За нерівністю Коши-Буняковського:
+\begin{equation}\label{tr:3:4}
+\mt{\vec{B}_s} (\vx^\ast-\vx_s) \leq \nr{\vec{B}_s} \nr{\vx^\ast-\vx_s} \leq b_s \nr{\vx^\ast-\vx_s}
+\end{equation}
+З врахуванням формул \eqref{tr:3:3} та \eqref{tr:3:4} можна записати:
+\begin{equation}
+\mEt{\nr{\vx^\ast-\vx_{s+1}}^2\setminus\set{\vx_0,\vx_1,\ldots,\vx_s}} \leq \nr{\vx^\ast-\vx_s}^2 + \rho_s b_s \gam + c\rho_s
+\end{equation}
+При чому:
+\begin{equation}
+2\nr{\vx^\ast-\vx_s} = \gam
+\end{equation}
+Позначимо через $\vz_s = \nr{\vx^\ast-\vx_s}^2 + \gam\suml_{k=s}^\infty \rho_k b_k + c\suml_{k=s}^\infty \rho^2_k$\\
+Отримуємо, що :
+\begin{eqnarray}
+&\mEt{\vz_{s+1}\setminus\set{\vx_0,\vx_1,\ldots,\vx_s}} \leq \vz_s \Rightarrow\\
+&\mEt{\vz_{s+1}\setminus\set{\vz_0,\vz_1,\ldots,\vz_s}} \leq \vz_s \label{tr:3:5}
+\end{eqnarray}
+Така послідовність $\set{\vz_s}$, що задовольняє умові \eqref{tr:3:5} називається \textbf{супермартингауер}. \\
+Так як $\vz_s>0$, то вона з ймовірністю 1 збіжна до якоїсь границі.\\
+Повторимо \eqref{tr:3:6} s разів:\\
+\begin{multline}
+\mEt{\nr{\vx^\ast-\vx_{s+1}}\setminus\set{\vx_0,\ldots,\vx_s}} \geq \nr{\vx^\ast-\vx_0}^2 + {} \\ {} +2 \suml_{k=0}^s \rho_k a_k \mt{\hvfx}(\vx_k) (\vx^\ast-\vx_k) + \gam \suml_{k=0}^s \rho_k b_k + c\suml_{k=0}^s \rho_k^2
+\end{multline}
+Ми замінили $2\mt{\vec{B}}_s (\vx^\ast - \vx_s) \leq b_s$\\
+Спрямуємо $s\to\infty$:\\
+В силу умов теореми $\suml_{k=0}^s \rho_kb_k$ - обмежений та $\suml_{k=0}^s \rho_k^2$ також обмежений. Тоді 
+\begin{equation}
+\suml_{k=0}^s \rho_k a_k \mt{\hvfx}(\vx_k) (\vx^\ast-\vx_k)>-\infty
+\end{equation}
+Так як ліва частина більша за нуль, а добуток $\mt{\hvfx}(\vx_k) (\vx^\ast-\vx_k)<0$.\\
+%Вставити у рядок
+І тоді, тим більше \begin{equation}\label{tr:3:7}
+\rho_k a_k \mt{\hvfx}(\vx_k) (\vx^\ast-\vx_k)>-\infty
+\end{equation} \\
+Тоді, щоб виконувалася умова \eqref{tr:3:7} необхідно, щоб:
+\begin{eqnarray}
+&0>\mt{\hvfx} (\vx_k)\cb{\vx^\ast-\vx_k} \xrightarrow[k\to\infty]{} 0\\
+&0>\vf(\vx^\ast) - \vf(\vx_k) \leq \mt{\hvfx} (\vx_k) (\vx^\ast-\vx_k) \xrightarrow[k\to\infty]{} 0\label{tr:3:8}
+\end{eqnarray} 
+Тоді з \eqref{tr:3:8} випливає, що знайдеться така підпослідовність послідовності $\set{\vx_k},\set{\vx_{k,l}}$, що $\liml_{l\to\infty} \vf(\vx_{kl}) = \vf(\vx^\ast)$
+\end{proof}
+\subsection{Метод стохастичної апроксимації}
+Використовується для знаходження мінімуму функції регресії без обмежень. 
+\begin{eqnarray}
+\min\mEt{\vf(\vx,\vomg)} = \vf(x) \\
+\vx_{s+1} = \vx_s - \rho_s \vxi_s
+\end{eqnarray}
+$\rho_s$ - крок, $\vxi_s$ - випадковий вектор.\\
+\begin{equation}
+\vxi_s = \sumson \cfrac{\vf(\vx_s+\ve_j\dels,\vomg_{sj}) - \vf(\vx_s,\vomg_{s0})}{\dels} \ve_j
+\end{equation}
+\begin{equation}
+\mEt{\vxi_s\setminus \vx_1} = \vfx(\vx_s) + \delta_s \vomg_s 
+\end{equation}
+$\vomg_s$ - крок. $\nr{\vomg_s}<c$\\
+\begin{equation}
+\mEt{\vxi_s\setminus \vx_s} = a_s \hvfx(\vx_s) +\vec{B}_s
+\end{equation}
+$a_s = 1, \vec{B}_s = \delta_s \vomg_s$\\
+Використаємо теорему о збіжності. Перевіримо умови:
+\begin{enumerate}
+\item $\sumszi \rho_s^2 < \infty$
+\item $\sumszi \rho_s a_s = \sumszi \rho_s = \infty$
+\item $\sumszi \rho_s b_s \geq \sumszi \rho_s \del_s \nr{\vomg_s} \leq c\sumszi \rho_s \delta_s < \infty$
+\end{enumerate}
+З 1 випливає, що $\rho_s \xrightarrow[s\to\infty]{} 0$.\\
+А з 2 та 3 випливає, що $\delta_s \xrightarrow[s\to\infty]{}0,\rho_s \xrightarrow[s\to\infty]{} 0$.\\
+Узагальненям цього методу є метод \textbf{випадкового пошуку}. Якщо у нас $n\geq 10$, то використовувати ці формули досить незручно. В таких випадках використовують метод випадкового пошуку, замінюючи метод знаходження квазіградієнту не по ортам, а за випадковими напрямами, що %Ще один красивий малюнок
+розподілені рівномірно. При цьому:
+\begin{equation}
+\vxi_s = \suml_{k=1}^K \cfrac{\vf(\vx_s+\beta_{sk}\delta_s,\vomg_{sk}) - \vf(\vx_s,\vomg_{sk})}{\delta_s}\beta_{sk}
+\end{equation}
+$K$ - число випадкових векторів.\\
+$\beta_{sk} = \bb{\beta_{skj}},\beta_{skj} \in\bb{-1,1}$\\
+\begin{equation}
+\mEt{\vxi_s\setminus \vx_s} = \cfrac K3 \hvfx (\vx_s) + \delta_s\vomg_s, K<n,\nr{\vomg_s}<C
+\end{equation}
